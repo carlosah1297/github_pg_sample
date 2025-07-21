@@ -8,25 +8,30 @@
 <body>
   <h1>My Datawrapper Chart</h1>
 
-  <!-- Replace the URL below with your own Datawrapper embed URL -->
+  <!-- ✅ Only include the iframe, not the whole embed code -->
   <iframe
-    title="My Chart"
-    aria-label="Chart"
-    id="datawrapper-chart"
-    src="<iframe title="Funding, US millions" aria-label="Bullet Bars" id="datawrapper-chart-SOYDr" src="https://datawrapper.dwcdn.net/SOYDr/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="212" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r,i=0;r=e[i];i++)if(r.contentWindow===a.source){var d=a.data["datawrapper-height"][t]+"px";r.style.height=d}}})}();
-</script>"
+    title="Funding, US millions"
+    aria-label="Bullet Bars"
+    id="datawrapper-chart-SOYDr"
+    src="https://datawrapper.dwcdn.net/SOYDr/1/"
     scrolling="no"
     frameborder="0"
     style="width: 100%; min-width: 300px; border: none;"
-    height="400">
+    height="400"
+    data-external="1">
   </iframe>
 
+  <!-- ✅ Optional: Script to resize the iframe automatically -->
   <script>
-    window.addEventListener("message", (event) => {
+    window.addEventListener("message", function (event) {
       if (event.data["datawrapper-height"]) {
         const chartId = Object.keys(event.data["datawrapper-height"])[0];
-        document.getElementById("datawrapper-chart").style.height =
-          event.data["datawrapper-height"][chartId] + "px";
+        const iframes = document.querySelectorAll("iframe");
+        for (const iframe of iframes) {
+          if (iframe.contentWindow === event.source) {
+            iframe.style.height = event.data["datawrapper-height"][chartId] + "px";
+          }
+        }
       }
     });
   </script>
